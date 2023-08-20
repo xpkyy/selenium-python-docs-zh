@@ -111,19 +111,19 @@ Selenium的用户可以利用这种强大的语言在web应用中查找元素。
 XPath扩展了（当然也支持）这种通过id或name属性获取元素的简单方式，同时也开辟了各种新的可能性，
 例如获取页面上的第三个复选框。
 
-使用XPath的主要原因之一就是当你想获取一个既没有id属性也没有name属性的元素时，
-你可以通过XPath使用元素的绝对位置来获取他（这是不推荐的），或相对于有一个id或name属性的元素
-（理论上的父元素）的来获取你想要的元素。XPath定位器也可以通过非id和name属性查找元素。
+使用XPath的主要原因之一就是当你想获取一个既没有身份证明（identification）属性也没有名字属性的元素时,
+你可以通过XPath使用元素的绝对位置来获取他（这是不推荐的),或相对于有一个身份证明（identification）或名字属性的元素
+（理论上的父元素)的来获取你想要的元素XPath定位器也可以通过非身份证明（identification）和名字属性查找元素。
 
 
 
 
 
-绝对的XPath是所有元素都从根元素的位置（HTML）开始定位，只要应用中有轻微的调整，会就导致你的定位失败。
-但是通过就近的包含id或者name属性的元素出发定位你的元素，这样相对关系就很靠谱，
-因为这种位置关系很少改变，所以可以使你的测试更加强大。
+绝对的XPath是所有元素都从根元素的位置(HTML)开始定位,只要应用中有轻微的调整,会就导致你的定位失败。
+但是通过就近的包含身份证明（identification）或者名字属性的元素出发定位你的元素,这样相对关系就很靠谱,
+因为这种位置关系很少改变,所以可以使你的测试更加强大。
 
-作为示例，页面元素如下所示::
+作为示例,页面元素如下所示::
 
    <html>
     <body>
@@ -136,54 +136,54 @@ XPath扩展了（当然也支持）这种通过id或name属性获取元素的简
    </body>
    <html>
 
-可以这样查找表单(form)元素::
+可以这样查找表单(表格)元素::
 
-  login_form = driver.find_element_by_xpath("/html/body/form[1]")
-  login_form = driver.find_element_by_xpath("//form[1]")
-  login_form = driver.find_element_by_xpath("//form[@id='loginForm']")
-
-
-1. 绝对定位 (页面结构轻微调整就会被破坏)
-
-2. HTML页面中的第一个form元素
-
-3. 包含 `id` 属性并且其值为 `loginForm` 的form元素
-
-username元素可以如下获取::
-
-  username = driver.find_element_by_xpath("//form[input/@name='username']")
-  username = driver.find_element_by_xpath("//form[@id='loginForm']/input[1]")
-  username = driver.find_element_by_xpath("//input[@name='username']")
-
-1. 第一个form元素中包含name属性并且其值为 `username` 的input元素
-
-2. id为 `loginForm` 的form元素的第一个input子元素
-
-3. 第一个name属性为 `username` 的input元素
-
-"Clear" 按钮可以如下获取::
-
-  clear_button = driver.find_element_by_xpath("//input[@name='continue'][@type='button']")
-  clear_button = driver.find_element_by_xpath("//form[@id='loginForm']/input[4]")
+log in _ form = driver . find _ element _ by _ XPath("/html/body/form[1]")
+log in _ form = driver . find _ element _ by _ XPath("//form[1]")
+log in _ form = driver . find _ element _ by _ XPath("//form[@ id = ' loginForm ']")
 
 
-1. Input with attribute named `name` and the value `continue` and
-   attribute named `type` and the value `button`
+1.绝对定位（页面结构轻微调整就会被破坏)
 
-2. Fourth input child element of the form element with attribute named
-   `id` and value `loginForm`
+2.超文本标记语言页面中的第一个形式元素
 
-这些实例都是一些举出用法, 为了学习更多有用的东西，下面这些参考资料推荐给你:
+3.包含` id '属性并且其值为` loginForm '的形式元素
 
-* `W3Schools XPath Tutorial <http://www.w3schools.com/xsl/xpath_intro.asp>`_
-* `W3C XPath Recommendation <http://www.w3.org/TR/xpath>`_
-* `XPath Tutorial
+用户名元素可以如下获取::
+
+username = driver . find _ element _ by _ XPath("//form/input[@ name = ' username ']")
+username = driver . find _ element _ by _ XPath("//form[@ id = ' loginForm ']/input[1]")
+username = driver . find _ element _ by _ XPath("//input[@name='username']")
+
+1.第一个形式元素中包含名字属性并且其值为`用户名'的投入元素
+
+2.身份证明（identification）为` loginForm '的形式元素的第一个投入子元素
+
+3.第一个名字属性为`用户名'的投入元素
+
+"清除"按钮可以如下获取::
+
+clear _ button = driver . find _ element _ by _ XPath("//input[@ name = ' continue '][@ type = ' button ']")
+clear _ button = driver . find _ element _ by _ XPath("//form[@ id = ' loginForm ']/input[4]")
+
+
+1.具有名为“名称”的属性和值“继续”的输入，以及
+名为“类型”的属性和值“按钮”
+
+2.属性名为的表单元素的第四个输入子元素
+` id '和值` loginForm '
+
+这些实例都是一些举出用法,为了学习更多有用的东西,下面这些参考资料推荐给你：
+
+* `W3Schools XPath教程< http://www.w3schools.com/xsl/xpath_intro.asp>`_
+* `W3C XPath建议< http://www.w3.org/TR/xpath>`_
+* `XPath教程
   <http://www.zvon.org/comp/r/tut-XPath_1.html>`_
-  - with interactive examples.
+-有互动的例子。
 
-还有一些非常有用的插件，可以协助发现元素的XPath:
+还有一些非常有用的插件,可以协助发现元素的XPath:
 
-* `XPath Checker
+* `XPath检查器
   <https://addons.mozilla.org/en-US/firefox/addon/1095?id=1095>`_ -
   suggests XPath and can be used to test XPath results.
 * `Firebug <https://addons.mozilla.org/en-US/firefox/addon/1843>`_ -
